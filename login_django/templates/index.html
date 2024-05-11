@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Sitio</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Inicio</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="/accounts/logout/">Cerrar sesión</a></li>
+            {% else %}
+                <li><a href="/accounts/register/">Registrarse</a></li>
+                <li><a href="/accounts/login/">Iniciar sesión</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    
+    <h1>Bienvenido a Tu Sitio</h1>
+    <!-- Contenido de tu página de inicio -->
+
+</body>
+</html>
