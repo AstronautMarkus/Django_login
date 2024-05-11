@@ -1,6 +1,12 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import login, logout
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+
 
 def mostrar_index(request):
-    return render(request, 'index.html')
+    user = request.user
+    context = {
+        'user': user,
+          # Suponiendo que tienes un modelo UserProfile asociado al usuario
+        # Otros datos que desees pasar a la plantilla
+    }
+    return render(request, 'index.html', context)

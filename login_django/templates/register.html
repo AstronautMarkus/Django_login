@@ -1,19 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
-</head>
-<body>
-    <h2>Registro</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Registrarse</button>
-    </form>
+{% extends 'base.html' %}
 
+{% block title %}
+<title>Registrarse</title>
+{% endblock %}
 
-    <a href="{% url 'home' %}">volver a casa</a>
-</body>
-</html>
+{% block content %}
+<div class="container">
+    <h2 class="mt-5">Registro</h2>
+    <h5 class="mt-5">ya tengo una cuenta creada, <a href="{% url 'login' %}">Iniciar sesión</a></h5>
+
+    {% if messages %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_username">Nombre de usuario:</label>
+                    <input type="text" name="username" class="form-control" id="id_username">
+                </div>
+                <div class="form-group">
+                    <label for="id_password1">Contraseña:</label>
+                    <input type="password" name="password1" class="form-control" id="id_password1" required>
+                    <small class="form-text text-muted">La contraseña debe tener al menos 8 caracteres y no puede ser demasiado común o enteramente numérica.</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_password2">Confirmar contraseña:</label>
+                    <input type="password" name="password2" class="form-control" id="id_password2">
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Registrarse</button>
+            </form>
+        </div>
+    </div>
+    <a href="{% url 'home' %}">Volver a casa</a>
+</div>
+{% endblock %}
